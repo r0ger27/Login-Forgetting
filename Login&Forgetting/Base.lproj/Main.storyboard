@@ -59,9 +59,6 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="1" green="0.73002931969999996" blue="0.13898355970000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <segue destination="waQ-De-gYy" kind="show" identifier="login" id="KcN-Qn-87r"/>
-                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="y7G-i1-YV4">
                                 <rect key="frame" x="98.5" y="466" width="123" height="77"/>
@@ -71,18 +68,12 @@
                                         <state key="normal" title="Forgot Login?">
                                             <color key="titleColor" red="1" green="0.73002931969999996" blue="0.13898355970000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="waQ-De-gYy" kind="show" identifier="loginSegue" id="xaG-Ua-QCb"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1S-5y-4Bi">
                                         <rect key="frame" x="0.0" y="47" width="123" height="30"/>
                                         <state key="normal" title="Forgot Password?">
                                             <color key="titleColor" red="1" green="0.73002931969999996" blue="0.13898355970000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="waQ-De-gYy" kind="show" identifier="passSegue" id="VQQ-lu-hIq"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -104,10 +95,13 @@
                         <viewLayoutGuide key="safeArea" id="1XT-Q6-CxB"/>
                     </view>
                     <navigationItem key="navigationItem" id="Zcz-Gm-X9J"/>
+                    <connections>
+                        <segue destination="waQ-De-gYy" kind="showDetail" identifier="showAuth" id="2Yg-ED-TqK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u71-26-tOF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1385.5072463768117" y="105.80357142857143"/>
+            <point key="canvasLocation" x="1395" y="106"/>
         </scene>
         <!--Authorization screen-->
         <scene sceneID="b7C-db-MTb">
@@ -137,7 +131,4 @@
             <point key="canvasLocation" x="2195.6521739130435" y="105.80357142857143"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="KcN-Qn-87r"/>
-    </inferredMetricsTieBreakers>
 </document>
