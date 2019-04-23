@@ -11,17 +11,13 @@ import UIKit
 class ViewController: UIViewController {
     
     let authUsername = "Ruslan"
-    
     let authPassword = "123456"
     
     enum UserAction {
         case onlyLogin, onlyPassword, wrongLogin, wrongPassword, forgotLogin, forgotPass, allGood
     }
     
-/*    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
+/*
     
     func userActions(username: String, password: String, sender: UIButton) {
         
@@ -44,12 +40,6 @@ class ViewController: UIViewController {
             }
         }
     } */
-    
-    // Задаем скрытие клавиатуры при тапе по экрану
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        view.endEditing(true)
-    }
 
     
 }
