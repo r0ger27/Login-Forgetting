@@ -14,7 +14,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
     }
-
+    enum UserAction {
+        case onlyLogin, onlyPassword, wrongLogin, wrongPassword, forgotLogin, forgotPass, allGood
+    }
+    
+    let username = "Ruslan"
+    let password = "123456"
 
 }
 
