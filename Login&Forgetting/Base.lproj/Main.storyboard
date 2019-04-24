@@ -29,7 +29,7 @@
         <!--View Controller-->
         <scene sceneID="Zeu-Nh-poa">
             <objects>
-                <viewController id="iSY-Sv-N0E" sceneMemberID="viewController">
+                <viewController id="iSY-Sv-N0E" customClass="ViewController" customModule="Login_Forgetting" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jmj-Ce-vWO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,6 +96,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="Zcz-Gm-X9J"/>
                     <connections>
+                        <outlet property="forgotLogin" destination="oy8-ga-Qhl" id="du7-DW-HwY"/>
+                        <outlet property="forgotPassword" destination="h1S-5y-4Bi" id="GoJ-m0-AkS"/>
+                        <outlet property="loginButton" destination="aet-tz-Ak2" id="xLZ-ex-6ft"/>
+                        <outlet property="passwordField" destination="Ys1-d2-p0J" id="GUm-Vc-zOg"/>
+                        <outlet property="usernameField" destination="jv0-sm-tmN" id="tu3-ly-4qd"/>
                         <segue destination="waQ-De-gYy" kind="showDetail" identifier="showAuth" id="2Yg-ED-TqK"/>
                     </connections>
                 </viewController>
@@ -125,6 +130,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e5I-Li-aXm"/>
                     </view>
+                    <connections>
+                        <outlet property="authText" destination="XTg-Ep-5S0" id="5UN-ft-1kF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F8S-hR-ukL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

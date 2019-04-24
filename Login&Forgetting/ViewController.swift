@@ -10,12 +10,23 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
+    @IBOutlet var usernameField: UITextField!
+    @IBOutlet var passwordField: UITextField!
+    
+    @IBOutlet var loginButton: UIButton!
+    @IBOutlet var forgotLogin: UIButton!
+    @IBOutlet var forgotPassword: UIButton!
+    
+    
     let authUsername = "Ruslan"
     let authPassword = "123456"
     
     enum UserAction {
         case onlyLogin, onlyPassword, wrongLogin, wrongPassword, forgotLogin, forgotPass, allGood
     }
+    
+    
     
 /*
     
