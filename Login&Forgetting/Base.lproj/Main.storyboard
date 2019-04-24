@@ -37,7 +37,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="ttV-Gb-TsU" userLabel="TextFields">
                                 <rect key="frame" x="85" y="99" width="150" height="85"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jv0-sm-tmN">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jv0-sm-tmN">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -59,6 +59,9 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="1" green="0.73002931969999996" blue="0.13898355970000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="waQ-De-gYy" kind="show" identifier="loginButton" id="DBV-WV-Utd"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="y7G-i1-YV4">
                                 <rect key="frame" x="98.5" y="466" width="123" height="77"/>
@@ -68,12 +71,18 @@
                                         <state key="normal" title="Forgot Login?">
                                             <color key="titleColor" red="1" green="0.73002931969999996" blue="0.13898355970000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="waQ-De-gYy" kind="show" identifier="forgotLogin" id="K7I-GW-r9r"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1S-5y-4Bi">
                                         <rect key="frame" x="0.0" y="47" width="123" height="30"/>
                                         <state key="normal" title="Forgot Password?">
                                             <color key="titleColor" red="1" green="0.73002931969999996" blue="0.13898355970000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="waQ-De-gYy" kind="show" identifier="forgotPass" id="xpe-1f-t4e"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -101,7 +110,6 @@
                         <outlet property="loginButton" destination="aet-tz-Ak2" id="xLZ-ex-6ft"/>
                         <outlet property="passwordField" destination="Ys1-d2-p0J" id="GUm-Vc-zOg"/>
                         <outlet property="usernameField" destination="jv0-sm-tmN" id="tu3-ly-4qd"/>
-                        <segue destination="waQ-De-gYy" kind="showDetail" identifier="showAuth" id="2Yg-ED-TqK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u71-26-tOF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -117,7 +125,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auth text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTg-Ep-5S0">
-                                <rect key="frame" x="121" y="272" width="78.5" height="24"/>
+                                <rect key="frame" x="16" y="272" width="288" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="1" green="0.73002931969999996" blue="0.13898355970000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -125,8 +133,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.55130202650000004" green="0.30166425489999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="XTg-Ep-5S0" firstAttribute="centerX" secondItem="PLl-vi-Fwh" secondAttribute="centerX" id="Ozm-YQ-k1Z"/>
-                            <constraint firstItem="XTg-Ep-5S0" firstAttribute="centerY" secondItem="PLl-vi-Fwh" secondAttribute="centerY" id="goA-he-Lqd"/>
+                            <constraint firstItem="XTg-Ep-5S0" firstAttribute="leading" secondItem="e5I-Li-aXm" secondAttribute="leading" constant="16" id="bmT-dg-gfX"/>
+                            <constraint firstItem="e5I-Li-aXm" firstAttribute="trailing" secondItem="XTg-Ep-5S0" secondAttribute="trailing" constant="16" id="mfT-Ny-fpD"/>
+                            <constraint firstItem="XTg-Ep-5S0" firstAttribute="centerY" secondItem="PLl-vi-Fwh" secondAttribute="centerY" id="qLH-pa-sdy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e5I-Li-aXm"/>
                     </view>
@@ -139,4 +148,7 @@
             <point key="canvasLocation" x="2195.6521739130435" y="105.80357142857143"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="K7I-GW-r9r"/>
+    </inferredMetricsTieBreakers>
 </document>
