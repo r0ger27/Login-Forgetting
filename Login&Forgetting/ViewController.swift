@@ -22,12 +22,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var forgotLogin: UIButton!
     @IBOutlet var forgotPassword: UIButton!
     
+    @IBOutlet weak var viewBottomConstraint: NSLayoutConstraint!
+    
     // MARK: - Override methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.usernameField.delegate = self
         self.passwordField.delegate = self
+        
+        setupViewResizerOnKeyboardShown()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -77,5 +81,47 @@ extension ViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+}
+
+extension UIViewController {
+    
+    @objc func keyboardWillResize(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+            let window = view.window?.frame {
+            
+            let height: CGFloat
+            
+            if notification.name == UIResponder.keyboardWillShowNotification {
+                height = window.origin.y + window.height - keyboardSize.height
+            } else {
+                let viewHeight = view.frame.height
+                height = viewHeight + keyboardSize.height
+            }
+            
+            view.frame = CGRect(
+                x: view.frame.origin.x,
+                y: view.frame.origin.y,
+                width: view.frame.width,
+                height: height
+            )
+        }
+    }
+    
+    func setupViewResizerOnKeyboardShown() {
+        
+        let names: [NSNotification.Name] = [
+            UIResponder.keyboardWillShowNotification,
+            UIResponder.keyboardWillHideNotification
+        ]
+        
+        for name in names {
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(keyboardWillResize),
+                name: name,
+                object: nil
+            )
+        }
     }
 }
