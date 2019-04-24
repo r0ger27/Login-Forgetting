@@ -11,8 +11,8 @@ import UIKit
 class ViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Vars
-    let authUsername = "Ruslan"
-    let authPassword = "123456"
+    let authUsername = "Denis"
+    let authPassword = "552201"
     
     // MARK: - Outlets
     @IBOutlet var usernameField: UITextField!
