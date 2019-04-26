@@ -9,3 +9,7 @@ In this application, we need to do a simple login/password check (specified in t
 - added: Alert if data in TextField incorrect
 - added: The keyboard does not come around in the text field (all Landscapes OFF)
 - added: The keyboard hide on tap's by the screen (all values in TextField remain)
+
+26.04.19 Update:
+- fixed: Removed unnecessary methods and comments in appDelegate; 
+- added: Tags to textField (for further development).
