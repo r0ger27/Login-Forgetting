@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Vars
     let authUsername = "Denis"
     let authPassword = "552201"
+    var buttonHasBeenPressed = false
     
     // MARK: - Outlets
     @IBOutlet var usernameField: UITextField!
@@ -79,8 +80,8 @@ extension ViewController {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
+        textField.resignFirstResponder()
+        return true
     }
 }
 
