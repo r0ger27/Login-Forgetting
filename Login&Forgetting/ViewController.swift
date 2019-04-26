@@ -13,7 +13,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Vars
     let authUsername = "Denis"
     let authPassword = "552201"
-    var buttonHasBeenPressed = false
     
     // MARK: - Outlets
     @IBOutlet var usernameField: UITextField!
@@ -66,7 +65,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let okayAction = UIAlertAction(title: "OK", style: .destructive)
         
         alert.addAction(okayAction)
-        
         present(alert, animated: true)
     }
 }
