@@ -22,8 +22,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var forgotLogin: UIButton!
     @IBOutlet var forgotPassword: UIButton!
     
-    @IBOutlet weak var viewBottomConstraint: NSLayoutConstraint!
-    
     // MARK: - Override methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,21 +29,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.usernameField.delegate = self
         self.passwordField.delegate = self
         
-        setupViewResizerOnKeyboardShown()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        hideKeyboardFromTap()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as! AuthViewController
         
-        if segue.identifier == "loginButton" {
-            if usernameField.text == authUsername && passwordField.text == authPassword {
-                destination.navigationItem.title = "Welcome!"
-                destination.textAuth = "Hello \(authUsername)! \n" + "Your password is \(authPassword)"
-            } else if usernameField.text!.isEmpty == true || passwordField.text!.isEmpty == true {
-                showAlert(message: "Please, enter data")
-            } else if usernameField.text != authUsername || passwordField.text != authPassword {
-                showAlert(message: "Please, check the entered data")
-            }
+        if usernameField.text == authUsername  && passwordField.text == authPassword {
+            destination.navigationItem.title = "Welcome!"
+            destination.textAuth = "Hello \(authUsername)! \n" + "Your password is \(authPassword)"
+        } else if usernameField.text!.isEmpty == true || passwordField.text!.isEmpty == true {
+            showAlert(message: "Please, enter data")
+        } else if usernameField.text != authUsername || passwordField.text != authPassword {
+            showAlert(message: "Please, check the entered data")
         }
         
         if segue.identifier == "forgotLogin" {
@@ -81,46 +80,37 @@ extension ViewController {
         textField.resignFirstResponder()
         return true
     }
-}
-
-extension UIViewController {
     
-    @objc func keyboardWillResize(notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-            let window = view.window?.frame {
-            
-            let height: CGFloat
-            
-            if notification.name == UIResponder.keyboardWillShowNotification {
-                height = window.origin.y + window.height - keyboardSize.height
-            } else {
-                let viewHeight = view.frame.height
-                height = viewHeight + keyboardSize.height
+    @objc func keyboardWillShow(notification: NSNotification) {
+        var translation:CGFloat = 0
+        
+        if UIDevice.current.orientation == UIDeviceOrientation.landscapeLeft || UIDevice.current.orientation == UIDeviceOrientation.landscapeRight {
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                if usernameField.isEditing {
+                    translation = CGFloat(-keyboardSize.height / 4.2)
+                } else if passwordField.isEditing {
+                    translation = CGFloat(-keyboardSize.height / 4.2)
+                }
             }
-            
-            view.frame = CGRect(
-                x: view.frame.origin.x,
-                y: view.frame.origin.y,
-                width: view.frame.width,
-                height: height
-            )
+        }
+        
+        UIView.animate(withDuration: 0.2) {
+            self.view.transform = CGAffineTransform(translationX: 0, y: translation)
         }
     }
     
-    func setupViewResizerOnKeyboardShown() {
-        
-        let names: [NSNotification.Name] = [
-            UIResponder.keyboardWillShowNotification,
-            UIResponder.keyboardWillHideNotification
-        ]
-        
-        for name in names {
-            NotificationCenter.default.addObserver(
-                self,
-                selector: #selector(keyboardWillResize),
-                name: name,
-                object: nil
-            )
+    @objc func keyboardWillHide(notification: NSNotification) {
+        UIView.animate(withDuration: 0.2) {
+            self.view.transform = CGAffineTransform(translationX: 0, y: 0)
         }
+    }
+    
+    private func hideKeyboardFromTap() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func handleTap() {
+        view.endEditing(true)
     }
 }
